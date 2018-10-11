@@ -1,89 +1,123 @@
-<!DOCTYPE html>
-<html lang="en-US">
-
+﻿<!DOCTYPE html>
+<html>
 <head>
-	<title> Sands Films </title>
-	<link rel="shortcut icon" href="logo.ico" />
-	<link rel="stylesheet" type="text/css" href="SandsFilmStudio.css">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-	<script src="sandsBackgroundJQuery.js"></script>
+<title>Page Title</title>
+<style>
+:root {
+	/*Colours for side bar menu: Blue, Brown, Sand, Orangey/red*/
+	--colour1: #FE6847;
+	--colour2: #FCC671;
+	--colour3: #C9944F;
+	--colour4: #84CBFF;
+	
+	--panel-colour-1: #FFFDF2;
+	--panel-colour-2: #1a4b63;
+	--panel-colour-3: #e1e1e1;
+}
+html, body {
+	height: 100%;
+	margin: 0;
+}
+#polygon-1 {
+	stroke: var(--colour1);
+	fill: var(--colour1);
+}
+#polygon-2 {
+	stroke: var(--colour2);
+	fill: var(--colour2);
+}
+#polygon-3 {
+	stroke: var(--colour3);
+	fill: var(--colour3);
+}
+#polygon-4 {
+	stroke: var(--colour4);
+	fill: var(--colour4);
+}
+.window-panel-1 {
+	height: 100%;
+	background: var(--panel-colour-1);
+}
+.window-panel-2 {
+	height: 100%;
+	background: var(--panel-colour-2);
+}
+.window-panel-3 {
+	height: 100%;
+	background: var(--panel-colour-3);
+}
+.colour-option-container {
+	float:left;
+	width: 120px;
+	padding: 20px;
+	margin-top: 15px;
+	/*cursor:url(lama.png),auto;*/
+}
+.snail-shell-js {
+	background: fuchsia;
+	float:left;
+}
+.polygon-container {
+	display: block; width: auto; height: auto;
+}
+.menu-options-svg {
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+</style>
+
+<script>
+function onScrollEvent()
+{
+	
+}
+</script>
+
 </head>
+<body onscroll="onScrollEvent()">
 
-<body>
-	<div class="page">
-		<div class="slideshow-container">
-			<div class="mySlides fade">
-				<div class="numbertext">1 / 3</div>
-				<img src="building.jpg" class="stretch" alt="">
-			</div>
-			
-			<div class="mySlides fade">
-				<div class="numbertext">2 / 3</div>
-				<img src="picture-library.jpg" class="stretch" alt="">
-			</div>
-			
-			<div class="mySlides fade">
-				<div class="numbertext">3 / 3</div>
-				<img src="Costumes1.png" class="stretch" alt="">
-			</div>
-			
-			<!a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-			<!a class="next" onclick="plusSlides(1)">&#10095;</a>
+<!--Window panel 1, contains menu and javascript element-->
+<div class="window-panel-1" style="background-color: ">
+	<div class="colour-option-container">
+		<div class="polygon-container">
+			<svg width="100%" viewbox="0 0 26 46" class="menu-options-svg" style="">
+				<path id="polygon-1" d="m 3 3 l 20 10 l 0 30 l -20 -10 Z"/>
+			</svg>
 		</div>
-		
-		<div class="Header">
-		
+		<div class="polygon-container">
+			<svg width="100%" viewbox="0 0 26 46" class="menu-options-svg" style="">
+				<path id="polygon-2" d="m 3 3 l 20 10 l 0 30 l -20 -10 Z"/>
+			</svg>
 		</div>
-		
-		<div class="elements-container">
-			<div class="menu-banner">
-				<div class="options">
-				
-					<div class="logo"><div class="logo-align"><img src="logo.png" style="position: absolute;float:left;margin:1%;"></div></div>
-					<div class="menu-option"> <div class="menu-button" > Home </div></div>
-					<div class="menu-option"> <div class="menu-button" > About </div></div>
-					<div class="menu-option"> <div class="menu-button" > Good Soldier Schwejk </div></div>
-					<div class="menu-option"> <div class="menu-button" > Venue Hire </div></div>
-					<div class="menu-option"> <div class="menu-button" > Costumes </div></div>
-					<div class="menu-option"> <div class="menu-button" > Picture Library </div></div>
-					<div class="menu-option"> <div class="menu-button" > Cinema & Events</div></div>
-					<div class="menu-option"> <div class="menu-button" > Films </div></div>
-					<div class="menu-option"> <div class="menu-button" > Investors </div></div>
-					<div class="menu-option"> <div class="menu-button" > Shop </div></div>
-					<div class="menu-option"> <div class="menu-button" > Contact Address </div></div>
-				</div>
-			</div>
+		<div class="polygon-container">
+			<svg width="100%" viewbox="0 0 26 46" class="menu-options-svg" style="">
+				<path id="polygon-3" d="m 3 3 l 20 10 l 0 30 l -20 -10 Z"/>
+			</svg>
 		</div>
-
-		<div class="content-pane">
-			<div class="twitter-feed">
-				<a class="twitter-timeline" data-width="400" data-height="600" data-theme="dark" href="https://twitter.com/sandsfilmscine?ref_src=twsrc%5Etfw">Tweets by sandsfilmscine</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-			</div>
-			
-			<div class="facebook-feed">
-			
-			</div>
+		<div class="polygon-container">
+			<svg width="100%" viewbox="0 0 26 46" class="menu-options-svg" style="">
+				<path id="polygon-4" d="m 3 3 l 20 10 l 0 30 l -20 -10 Z"/>
+			</svg>
 		</div>
-		
-		<div class="footer">
-		
-		</div>
-		
-		
-		<br>
 	</div>
 	
-	<!div style="position:absolute; left:48%;">
-		<!span class="dot" onclick="currentSlide(1)"></span>
-		<!span class="dot" onclick="currentSlide(2)"></span>
-		<!span class="dot" onclick="currentSlide(3)"></span>
-	<!/div>
+	<div class="snail-shell-js">
+	</div>
 	
-	
-	<script src="sandsBackground.js"></script>
-	
-</body>
+</div>
 
+<!--About me panel-->
+<div class="window-panel-2">
+	<div style="border-radius: 3% / 5%; width: 90%; height: 90%; background-color: #FFFFEC; top: 5%; bottom: auto; left: 5%; position: relative;">
+	</div>
+</div>
+
+<!--Projects portfolio-->
+<div class="window-panel-3">
+	
+</div>
+</body>
 </html>
