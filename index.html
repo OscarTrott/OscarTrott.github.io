@@ -10,8 +10,10 @@
 	--colour3: #009999;
 	--colour4: #09b081;
 	
-	--panel-colour-1: #f9f9f9;
-	--panel-colour-2: #092327;
+	--options-background-colour: #f3fdff;	
+	
+	--panel-colour-1: #f3fdff;
+	--panel-colour-2: #dbedff;
 	--panel-colour-3: #f9f9f9;
 	
 	--footer-colour: #1a4b63;
@@ -45,19 +47,28 @@ html, body {
 	fill: var(--colour4);
 }
 .window-panel-1 {
-	height: 100%;
+	height: 938px;
 	background: var(--panel-colour-1);
 }
 .window-panel-2 {
-	height: 90%;
+	height: 845px;
 	background: var(--panel-colour-2);
 }
 #about-me-text-box {
-	border-radius: 20px; width: 90%; height: 90%; background-color: white; top: 5%; bottom: auto; left: 5%; position: relative;
-	font-family: Arial, Helvetica, sans-serif; font-size: 16px;
+	border-radius: 20px; width: 90%; height: 90%; top: 5%; bottom: auto; left: 5%; position: relative;
+	font-family: Arial, Helvetica, sans-serif; font-size: 26px;
+	color: #241200c4;
+}
+#profile-picture {
+	width: 15%;
+	float: right;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #f1f1f1;
+	border-radius: 5px;
 }
 .window-panel-3 {
-	height: 90%;
+	height: 845px;
 	background: var(--panel-colour-3);
 }
 .Page-footer {
@@ -71,7 +82,7 @@ html, body {
 	padding: 20px;
 	padding-top: 35px;
 	padding-bottom: 23px;
-	background-color: #757780;
+	background-color: var(--options-background-colour);
 	/*cursor:url(lama.png),auto;*/
 }
 .snail-shell-js {
@@ -177,6 +188,8 @@ html, body {
 <div class="window-panel-2">
 	<div id="about-me-text-box">
 		<div style="padding: 15px;">
+		<img id="profile-picture" src="Profile picture.jpg"/>
+			<h1>About me</h1>
 			I recently graduated from the University of Sussex with a first in Computer Science. I have enjoyed taking on challenges, finding solutions, and participating in programming projects both independently and as part of a group. During my alternate education, I developed a need to acquire an understanding of how things work at a fundamental level. 
 		</div>
 	</div>
@@ -185,13 +198,8 @@ html, body {
 <!--Projects portfolio-->
 <div class="window-panel-3">
 	<ul class="portfolio-list">
-		{% for repo in site.github.public_repositories limit:28}
-			{% if repo.fork != true %}
-				<li class="repository">
-					<a href="{{ repo.homepage }}">{{repo.name}}</a>
-				</li>
-			{% endif %}
-		{% endfor %}
+		<!--Put repository portfolios in here-->
+		
 	</ul>
 </div>
 
