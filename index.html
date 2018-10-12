@@ -18,6 +18,21 @@
 	
 	--footer-colour: #1a4b63;
 }
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-track {
+	background: #ababab69;border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+	background: #0d1e5dcc;
+	border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #060e2bcc;
+}
+
 html, body {
 	height: 100%;
 	margin: 0;
@@ -50,6 +65,14 @@ html, body {
 	height: 938px;
 	background: var(--panel-colour-1);
 }
+#name-flair {
+	position:relative;
+	text-align:center;
+	top: -280px;
+	left: -45px;
+}
+.name-flair-text {
+}
 .window-panel-2 {
 	height: 845px;
 	background: var(--panel-colour-2);
@@ -70,11 +93,63 @@ html, body {
 .window-panel-3 {
 	height: 845px;
 	background: var(--panel-colour-3);
+	padding: 50px;
+	align-items:center;
+	justify-content: center;
+}
+#portfolio-grid {
+	display:grid;
+	grid-template-columns: repeat(2, 350px);
+	grid-template-rows: repeat(2, 50%);
+	grid-auto-columns: 350px;
+	grid-auto-flow: column;
+	overflow:scroll;
+	overflow-y: hidden;
+}
+.repo {
+	width: 300px;
+	height: 350px;
+	background-color: #d8dbe6;
+
+}
+.repo-link {
+	text-decoration:none;
+	margin: 30px;
+}
+.repo-title {
+	text-align:center;
+	padding: 20px;
+	overflow:hidden;
+	font-size: 45px;
+	font-family: Arial, Helvetica, sans-serif;
+    color: #241200eb;
+    }
+.repo-desc {
+	padding: 20px;
+	overflow:hidden;
+	font-size: 22px;
+	font-family: Arial, Helvetica, sans-serif;
+    color: #241200eb;
+    }
+.repo-divider {
+	background-color: #0984b050;
+	width: 60%;
+	height: 2px;
+	position:relative;
+	left: 20%;
+	border-radius: 5px;
 }
 .Page-footer {
 	height: 30%;
 	background:var(--footer-colour);
-	color: white;
+	color: #fff3ede0;
+	font-size: 20px;
+}
+#email-link {
+	text-decoration:none;color:#fff3ede0;
+}
+#email-link:hover {
+	text-decoration:underline;
 }
 .colour-option-container {
 	float:left;
@@ -86,7 +161,6 @@ html, body {
 	/*cursor:url(lama.png),auto;*/
 }
 .snail-shell-js {
-	background: fuchsia;
 	width: 50%;
 	height: 40%;
 	left: 25%;
@@ -182,6 +256,28 @@ html, body {
 	<div class="snail-shell-js">
 	</div>
 	
+	<div id="name-flair">
+		<svg>
+			<text x="2" y="12" transform="scale(5)" class="name-flair-text" fill="url(#skyGradient)">
+				<tspan>Oscar</tspan>
+				<tspan x="7" dy="15">Trott</tspan>
+			</text> 
+			<g transform=""translate(0 0) scale(1 -1)"><use xlink:href=".name-flair-text" y="0"></use></g>
+			
+			<defs>
+				<linearGradient id="skyGradient" x1="100%" y1="100%">
+		          <stop offset="0%" stop-color="#084C97" stop-opacity="1">
+		            <animate attributeName="stop-color" values="#084C97;#0978A0;#008C8C;#09A076;#337A51;#09A076;#008C8C;#0978A0;#084C97;" dur="14s" repeatCount="indefinite" />
+		          </stop>
+		          <stop offset="100%" stop-color="#6191C6" stop-opacity="1">
+		            <animate attributeName="stop-color" values="#6191C6;#62B0CC;#5CBEBE;#62CCAE;#80B295;#62CCAE;#5CBEBE;#62B0CC;#6191C6;" dur="14s" repeatCount="indefinite" />
+		            <animate attributeName="offset" values=".95;.80;.60;.40;.20;0;.20;.40;.60;.80;.95" dur="14s" repeatCount="indefinite" />
+		          </stop>
+		        </linearGradient>
+			</defs>
+		</svg>
+	</div>
+	
 </div>
 
 <!--About me panel-->
@@ -189,7 +285,7 @@ html, body {
 	<div id="about-me-text-box">
 		<div style="padding: 15px;">
 		<img id="profile-picture" src="Profile picture.jpg"/>
-			<h1>About me</h1>
+			<h2>About me</h2>
 			I recently graduated from the University of Sussex with a first in Computer Science. I have enjoyed taking on challenges, finding solutions, and participating in programming projects both independently and as part of a group. During my alternate education, I developed a need to acquire an understanding of how things work at a fundamental level. 
 		</div>
 	</div>
@@ -197,17 +293,138 @@ html, body {
 
 <!--Projects portfolio-->
 <div class="window-panel-3">
-	<ul class="portfolio-list">
+	<div id="portfolio-grid">
 		<!--Put repository portfolios in here-->
-		
-	</ul>
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+
+		<a href="" class="repo-link">
+			<div class="repo">
+				<div class="repo-title">
+					iasd
+				</div>
+				<div class="repo-divider"></div>
+				<div class="repo-desc">
+					hello there, I am fluent in over 500 different languages
+				</div>
+			</div>
+		</a>
+
+
+
+
+	</div>
 </div>
 
 <!--References and comments-->
 <div class="Page-footer">
-	<p style="padding: 50px; margin:0px">
-		Contact information: 
-	</p>
+	<div style="padding: 80px; padding-left: 200px; margin:0px">
+		<h3>Contact information</h3>
+		E-mail: <a id="email-link" href="mailto:oscar.trott@googlemail.com"> oscar.trott@googlemail.com</a>
+	</div>
 </div>
 </body>
 </html>
