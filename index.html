@@ -123,16 +123,25 @@ html, body {
 	text-align:center;
 	padding: 20px;
 	overflow:hidden;
-	font-size: 45px;
+	font-size: 25px;
+	font-weight:600;
 	font-family: Arial, Helvetica, sans-serif;
     color: #241200eb;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
     }
 .repo-desc {
 	padding: 20px;
 	overflow:hidden;
-	font-size: 22px;
+	font-size: 20px;
 	font-family: Arial, Helvetica, sans-serif;
     color: #241200eb;
+    text-overflow: ellipsis;
+    overflow: scroll;
+    overflow-x: hidden;
+	height:218px;
+	width:260px;
     }
 .repo-divider {
 	background-color: #0984b050;
@@ -190,6 +199,15 @@ html, body {
 	font-family: Arial, Helvetica, sans-serif; font-size: 4px;
 	text-align:center;
 }
+#scroll-top-btn {
+	position:fixed;
+	width: 50px;
+	height:50px;
+	border-radius: 10px;
+	background-color: #8C92AA80;
+	right: 30px;
+	bottom: 30px;
+}
 </style>
 
 <script>
@@ -198,17 +216,63 @@ html, body {
 </head>
 <body>
 
+<a href="#scroll-top">
+	<div id="scroll-top-btn">
+		<svg width="100%" viewbox="0 0 26 46" style="top:-12px;position:relative;">
+			<path class="polygon-icon" transform="translate(3,10) scale(0.025)" d="m403.207031 806.332031c-222.285156 0-403.1249998-180.839843-403.1249998-403.125 0-222.285156 180.8398438-403.1249998 403.1249998-403.1249998 222.285157 0 403.125 180.8398438 403.125 403.1249998 0 222.285157-180.839843 403.125-403.125 403.125zm0-779.375c-207.464843 0-376.25 168.785157-376.25 376.25 0 207.46875 168.785157 376.25 376.25 376.25 207.46875 0 376.25-168.78125 376.25-376.25 0-207.464843-168.78125-376.25-376.25-376.25zm0 0"/>
+			<path class="polygon-icon" transform="translate(3,10) scale(0.025)" d="m604.769531 497.269531c-3.4375 0-6.875-1.3125-9.5-3.933593l-192.0625-192.066407-192.058593 192.066407c-5.25 5.25-13.753907 5.25-19.003907 0s-5.25-13.753907 0-19.003907l201.5625-201.5625c5.25-5.25 13.753907-5.25 19.003907 0l201.5625 201.5625c5.25 5.25 5.25 13.753907 0 19.003907-2.628907 2.621093-6.066407 3.933593-9.503907 3.933593zm0 0"/>
+		</svg>
+
+	</div>
+</a>
+
 <!--Window panel 1, contains menu and javascript element-->
 <div class="window-panel-1" style="background-color: ">
 	<div id="scroll-top"></div>
 	<div class="colour-option-container">
 		
-		<div class="polygon-container"><a href="#scroll-top">
+		<div class="polygon-container"><a href="#email-link">
 			<svg width="100%" viewbox="0 0 26 46" class="menu-options-svg" style="">
 				<path id="polygon-1" d="m 3 3 l 20 10 l 0 30 l -20 -10 Z"/>
 				<path class="polygon-icon" transform="translate(3,10) scale(0.025)" d="m403.207031 806.332031c-222.285156 0-403.1249998-180.839843-403.1249998-403.125 0-222.285156 180.8398438-403.1249998 403.1249998-403.1249998 222.285157 0 403.125 180.8398438 403.125 403.1249998 0 222.285157-180.839843 403.125-403.125 403.125zm0-779.375c-207.464843 0-376.25 168.785157-376.25 376.25 0 207.46875 168.785157 376.25 376.25 376.25 207.46875 0 376.25-168.78125 376.25-376.25 0-207.464843-168.78125-376.25-376.25-376.25zm0 0"/>
-				<path class="polygon-icon" transform="translate(3,10) scale(0.025)" d="m604.769531 497.269531c-3.4375 0-6.875-1.3125-9.5-3.933593l-192.0625-192.066407-192.058593 192.066407c-5.25 5.25-13.753907 5.25-19.003907 0s-5.25-13.753907 0-19.003907l201.5625-201.5625c5.25-5.25 13.753907-5.25 19.003907 0l201.5625 201.5625c5.25 5.25 5.25 13.753907 0 19.003907-2.628907 2.621093-6.066407 3.933593-9.503907 3.933593zm0 0"/>
-				<text x="5" y="34" class="polygon-icon">Go to top</text>
+				<path id="Imported Path"
+        		fill="white" transform="translate(5.4,12) scale(0.03)" stroke-width="1"
+d="M 490.91,91.33
+          C 490.91,91.33 21.09,91.33 21.09,91.33
+            9.44,91.33 0.00,100.78 0.00,112.43
+            0.00,112.43 0.00,399.57 0.00,399.57
+            0.00,411.22 9.44,420.67 21.09,420.67
+            21.09,420.67 490.91,420.67 490.91,420.67
+            502.56,420.67 512.00,411.22 512.00,399.57
+            512.00,399.57 512.00,112.43 512.00,112.43
+            512.00,100.78 502.56,91.33 490.91,91.33 Z
+          M 21.09,107.90
+          C 21.09,107.90 490.91,107.90 490.91,107.90
+            492.89,107.91 494.63,109.21 495.21,111.10
+         495.21,111.10 255.82,260.18 255.82,260.18
+255.82,260.18 16.79,111.10 16.79,111.10
+             17.37,109.21 19.11,107.91 21.09,107.90 Z
+           M 16.57,129.99
+           C 16.57,129.99 188.63,237.45 188.63,237.45
+             188.63,237.45 16.57,373.95 16.57,373.95
+             16.57,373.95 16.57,129.99 16.57,129.99 Z
+           M 495.43,399.46
+           C 495.43,401.96 493.41,403.99 490.91,403.99
+             490.91,403.99 21.09,403.99 21.09,403.99
+             18.59,403.99 16.57,401.96 16.57,399.46
+             16.57,399.46 16.57,395.04 16.57,395.04
+             16.57,395.04 203.54,247.28 203.54,247.28
+             203.54,247.28 238.73,269.09 238.73,269.09
+             241.43,270.79 255.09,280.18 272.55,269.82
+             272.55,269.82 308.46,247.28 308.46,247.28
+             308.46,247.28 495.43,395.04 495.43,395.04
+             495.43,395.04 495.43,399.46 495.43,399.46 Z
+           M 495.43,373.95
+           C 495.43,373.95 322.93,237.89 322.93,237.89
+             322.93,237.89 495.43,130.98 495.43,130.98
+             495.43,130.98 495.43,373.95 495.43,373.95 Z
+           M 571.00,180.00" />
+				<text x="3" y="34" class="polygon-icon">Contact me</text>
 			</svg></a>
 		</div>
 		<div class="polygon-container"><a href="#about-me-scroll">
@@ -257,10 +321,6 @@ html, body {
 			</svg></a>
 		</div>
 	</div>
-	
-	<div class="snail-shell-js">
-	</div>
-	
 	<div id="name-flair">
 		<svg>
 			<text x="2" y="12" transform="scale(5)" class="name-flair-text" fill="url(#skyGradient)">
@@ -282,7 +342,8 @@ html, body {
 			</defs>
 		</svg>
 	</div>
-	
+	<div class="snail-shell-js">
+	</div>
 </div>
 
 <!--About me panel-->
@@ -306,14 +367,14 @@ html, body {
 <div class="window-panel-3">
 	<div id="portfolio-grid">
 		<!--Put repository portfolios in here-->
-		<a href="" class="repo-link">
+		<a href="https://github.com/OscarTrott/Cognitive-Affective-state-detection-through-analysis-of-depth-data-code" class="repo-link">
 			<div class="repo">
 				<div class="repo-title">
-					iasd
+					Cognitive affect detection through application of computer vision on depth
 				</div>
 				<div class="repo-divider"></div>
 				<div class="repo-desc">
-					hello there, I am fluent in over 500 different languages
+					This page holds all code, reports and documentation of the system along with various outputs produced The organisation is as follows, the main code and report is given in the root directory then there are 3 result directories: -Background estimation output -Optical flow output -Video files
 				</div>
 			</div>
 		</a>
