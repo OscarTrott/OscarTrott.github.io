@@ -1,5 +1,5 @@
 # Oscar's website
-### URL: <a href="oscartrott.github.io">Link to page</a>
+### URL: <a href="https://oscartrott.github.io/">Link to page</a>
 
 Using github pages to host my website and like to repositories.
 
