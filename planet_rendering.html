@@ -1,0 +1,185 @@
+<html>
+	<head>
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { display: block; }
+		</style>
+	</head>
+	<body>
+		<div id="container" width="100vw" height="100vh" />
+		<script src="js/three.js"></script>
+		<script>
+
+			// --------------------------- Initial setup things ---------------------------
+			// Get the containing DOM element
+			const container = document.querySelector('#container');
+
+			// Create the renderer, we're using WebGL with anti aliasing enabled
+			var renderer = new THREE.WebGLRenderer({ antialias: true });
+
+			// Get the view width and height
+			const WIDTH = window.innerWidth;
+			const HEIGHT = window.innerHeight;
+			renderer.setSize(WIDTH, HEIGHT);
+
+			// Define camera attributes
+			const c_FOV_DEG = 75;
+			const c_ASPECT = WIDTH / HEIGHT;
+			const c_NEAR = 0.1;
+			const c_FAR = 10000;
+
+			// Create the camera
+			const camera = new THREE.PerspectiveCamera(c_FOV_DEG, c_ASPECT, c_NEAR, c_FAR);
+
+			// Set camera position within the scene (arbitrary scale)
+			camera.position.set( 0, 0, 500 );
+
+			// Create the scene within which the camera and objects will exist
+            const scene = new THREE.Scene();
+
+			// Add the camera to the scene
+			scene.add(camera);
+
+			// Append the rendering to the container element
+			container.appendChild(renderer.domElement);
+
+			// Create a texture loader
+			var loader = new THREE.TextureLoader();
+
+			// --------------------------- Create scene geometry ---------------------------
+			// Sphere geometry definition
+			const RADIUS = 200;
+			const SEGMENTS = 500;
+			const RINGS = 500;
+
+			// Create grouping for the globe
+			const globe = new THREE.Group();
+			scene.add(globe);
+
+			// Create the earth with our texture
+			loader.load( 'images/earthmap10k.jpg', function ( texture ) {
+				var normalMapTexture = loader.load('images/earthbump10k.jpg')
+				var lightMapTexture = loader.load("images/earthlights10k.jpg")
+				var specularMapTexture = loader.load("images/earthspec10k.jpg")
+				
+				var starFieldTexture = loader.load("images/starField.png")
+
+				// Create the sphere
+				var earthSphere = new THREE.SphereGeometry( RADIUS, SEGMENTS, RINGS );
+				var starSphere = new THREE.SphereGeometry( RADIUS*50, SEGMENTS, RINGS );
+				// Map the texture to the material. 
+				var earthMaterial = new THREE.MeshPhongMaterial( { map: texture, specularMap: specularMapTexture, displacementMap: normalMapTexture, displacementScale: 3, emissive: 0xFFFFFF, emissiveMap: lightMapTexture, emissiveIntensity: 0.1} );
+				var starMaterial = new THREE.MeshPhongMaterial( {color: 0x000000, emissive: 0xFFFFFF, emissiveMap: starFieldTexture, emissiveIntensity: 100, reflectivity: 0} );
+				// Create a new mesh with sphere geometry.
+				var earthMesh = new THREE.Mesh( earthSphere, earthMaterial );
+				var starMesh = new THREE.Mesh( starSphere, starMaterial );
+
+				starMesh.material.side = THREE.BackSide;
+
+				// Add mesh to globe
+				globe.add(earthMesh);
+				globe.add(starMesh);
+			} );
+
+			// Create the scene lighting
+			const pointLight = new THREE.PointLight(0xFFFFFF, 1.5);
+
+			// Position the light
+			pointLight.position.x = 10;
+			pointLight.position.y = 50;
+			pointLight.position.z = 20000;
+
+			// Add the light to the scene
+			scene.add(pointLight);
+
+			var sunSphere = new THREE.SphereGeometry( 10, 5, 5 );
+			var sunMaterial = new THREE.MeshLambertMaterial({color: 0xe0a434});
+			var sunMesh = new THREE.Mesh(sunSphere, sunMaterial);
+			pointLight.add(sunMesh);
+			sunMesh.position = pointLight.position;
+
+			// Set up render frequency
+			var render = function () {
+				requestAnimationFrame(render);
+
+				globe.rotation.y += .005;
+
+				renderer.render(scene, camera);
+			};
+
+			render();
+
+			//Rotate on Mouse Move
+
+
+			//store our previous mouse move; start value is at center
+			var lastMove = [window.innerWidth/2, window.innerHeight/2];
+
+			var mouseDown = 0;
+			document.body.onmousedown = function(e) { 
+				++mouseDown;
+				//store new position in lastMove
+				lastMove[0] = e.clientX;
+				lastMove[1] = e.clientY;
+			}
+			document.body.onmouseup = function(e) {
+				--mouseDown;
+			}
+
+			var camera_pivot = new THREE.Object3D()
+			var Z_AXIS = new THREE.Vector3( 0, 0, 1 );
+			var Y_AXIS = new THREE.Vector3( 0, 1, 0 );
+
+			var light = new THREE.AmbientLight( 0x202020 ); // soft white light
+			scene.add( light );
+
+			scene.add( camera_pivot );
+			camera_pivot.add( camera );
+			camera.position.set( 500, 0, 0 );
+			camera.lookAt( camera_pivot.position );
+					
+			//callback function for mouse move event listener
+			function rotateOnMouseMove(e) {
+				e = e || window.event;
+				if (mouseDown) {
+					//calculate difference between current and last mouse position
+					const moveX = ( e.clientX - lastMove[0]);
+					const moveY = ( e.clientY - lastMove[1]);
+
+					//rotate the globe based on distance of mouse moves (x and y)
+					camera_pivot.rotateOnAxis( Z_AXIS, moveY * 0.01 );    // radians
+					camera_pivot.rotateOnAxis( Y_AXIS, -moveX * 0.01 );    // radians
+
+					// Rotate camera around the local z-axis to keep it "vertical"
+
+
+					//store new position in lastMove
+					lastMove[0] = e.clientX;
+					lastMove[1] = e.clientY;
+				}
+			}
+
+			//on mousemove, call rotateOnMouseMove
+			document.addEventListener('mousemove', rotateOnMouseMove);
+
+			window.addEventListener( 'resize', onWindowResize, false );
+
+			function onWindowResize(){
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			// Create the ring!
+			var ringGeometry = new THREE.RingGeometry( 1, 5, 32 );
+			var ringMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00, side: THREE.DoubleSide } );
+			var ringMesh = new THREE.Mesh( ringGeometry, ringMaterial );
+			camera_pivot.add( ringMesh );
+
+		</script>
+	</body>
+</html>
