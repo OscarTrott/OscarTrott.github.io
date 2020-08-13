@@ -8,6 +8,9 @@
 	</head>
 	<body>
 		<div id="container" width="100vw" height="100vh" />
+			<div id="controls" style="width: 245px; float: right; margin-right: 15px; overflow-y: visible;">
+				
+			</div>
 		<script src="js/three.js"></script>
 		<script>
 
@@ -70,7 +73,7 @@
 				var starSphere = new THREE.SphereGeometry( RADIUS*50, SEGMENTS, RINGS );
 				// Map the texture to the material. 
 				var earthMaterial = new THREE.MeshPhongMaterial( { map: texture, specularMap: specularMapTexture, displacementMap: normalMapTexture, displacementScale: 3, emissive: 0xFFFFFF, emissiveMap: lightMapTexture, emissiveIntensity: 0.1} );
-				var starMaterial = new THREE.MeshPhongMaterial( {color: 0x000000, emissive: 0xFFFFFF, emissiveMap: starFieldTexture, emissiveIntensity: 100, reflectivity: 0} );
+				var starMaterial = new THREE.MeshLambertMaterial( {color: 0x000000, emissive: 0xFFFFFF, emissiveMap: starFieldTexture, emissiveIntensity: 1, reflectivity: 0} );
 				// Create a new mesh with sphere geometry.
 				var earthMesh = new THREE.Mesh( earthSphere, earthMaterial );
 				var starMesh = new THREE.Mesh( starSphere, starMaterial );
@@ -103,12 +106,12 @@
 			var render = function () {
 				requestAnimationFrame(render);
 
-				globe.rotation.y += .005;
+				globe.rotation.y += .001;
+				ringMesh.rotation.y += .001;
 
 				renderer.render(scene, camera);
 			};
 
-			render();
 
 			//Rotate on Mouse Move
 
@@ -174,12 +177,19 @@
 
 			}
 
+			const RINGALTITUDE = 5;
+			const RINGHEIGHT = 2;
+
 			// Create the ring!
-			var ringGeometry = new THREE.RingGeometry( 1, 5, 32 );
+			var ringGeometry = new THREE.RingGeometry( RADIUS + RINGALTITUDE, RADIUS + RINGALTITUDE + RINGHEIGHT, 128 );
 			var ringMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00, side: THREE.DoubleSide } );
 			var ringMesh = new THREE.Mesh( ringGeometry, ringMaterial );
-			camera_pivot.add( ringMesh );
+			
+			globe.add( ringMesh );
+			scene.add(ringMesh);
 
+			// Should always be the last call!
+			render();
 		</script>
 	</body>
 </html>
